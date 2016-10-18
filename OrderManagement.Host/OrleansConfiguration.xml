@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<OrleansConfiguration xmlns="urn:orleans">
+  <Globals>
+    <SeedNode Address="localhost" Port="11111" />
+    <StorageProviders>
+      <Provider Type="Orleans.Storage.MemoryStorage" Name="memory" />
+      <Provider Type="Orleans.StorageProviders.SimpleSQLServerStorage.SimpleSQLServerStorage" Name="PubSubStore"
+                ConnectionString="; Database = LocalOrleansStorage; Integrated Security = True; Asynchronous Processing = True; Max Pool Size = 200;"
+                UseJsonFormat="false" />
+
+      <Provider Type="Orleans.StorageProviders.SimpleSQLServerStorage.SimpleSQLServerStorage" Name="basic"
+                ConnectionString="; Database = LocalOrleansStorage; Integrated Security = True; Asynchronous Processing = True; Max Pool Size = 200;"
+                UseJsonFormat="both" />
+      <!--<Provider Type="Orleans.SqlUtils.StorageProvider.SqlStorageProvider" Name="sql" 
+                 AdoInvariant="System.Data.SqlClient"
+                DataConnectionString="Data Source = .; Database = LocalOrleansStorage; Integrated Security = True; Asynchronous Processing = True; Max Pool Size = 200;" />-->
+    </StorageProviders> 
+  </Globals>
+  <Defaults>
+    <Networking Address="localhost" Port="11111" />
+    <ProxyingGateway Address="localhost" Port="30000" />
+    <Tracing DefaultTraceLevel="Verbose" TraceToConsole="false" TraceToFile="{0}-{1}.log" />
+  </Defaults>
+</OrleansConfiguration>
